@@ -142,7 +142,6 @@ Editor.defaultConfig = {
 			'codeBlock',
 			'sourceEditing',
 			'blockQuote',
-			'textPartLanguage',
 			'insertImage',
 			'insertTable',
 			'mediaEmbed',
@@ -159,7 +158,8 @@ Editor.defaultConfig = {
 			'pageBreak',
 			'removeFormat',
 			'specialCharacters',
-			'todoList'
+			'todoList',
+			'textPartLanguage'
 		]
 	},
 	language: 'en',
