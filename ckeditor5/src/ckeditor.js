@@ -131,6 +131,7 @@ Editor.defaultConfig = {
 			'bold',
 			'italic',
 			'underline',
+			'code',
 			'link',
 			'bulletedList',
 			'numberedList',
