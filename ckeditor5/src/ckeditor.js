@@ -57,6 +57,7 @@ import TextPartLanguage from '@ckeditor/ckeditor5-language/src/textpartlanguage.
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
 import TodoList from '@ckeditor/ckeditor5-list/src/todolist';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline.js';
+import ImageInsert from '@ckeditor/ckeditor5-image/src/imageinsert';
 import EditorWatchdog from '@ckeditor/ckeditor5-watchdog/src/editorwatchdog.js';
 
 
@@ -142,6 +143,7 @@ Editor.defaultConfig = {
 			'sourceEditing',
 			'blockQuote',
 			'textPartLanguage',
+			'insertImage',
 			'insertTable',
 			'mediaEmbed',
 			'undo',
@@ -157,8 +159,7 @@ Editor.defaultConfig = {
 			'pageBreak',
 			'removeFormat',
 			'specialCharacters',
-			'todoList',
-			'insertImage'
+			'todoList'
 		]
 	},
 	language: 'en',

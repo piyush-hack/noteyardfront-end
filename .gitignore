@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#ck-editor
+/ckeditor5/node_modules
+
+
+#vscode
+/.vscode
+/ckeditor5/.vscode
