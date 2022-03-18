@@ -210,7 +210,7 @@ export const QuillToolbar = () => (
       <button className="ql-imageHandler">
         <CustomImageFromLink />
       </button>
-      <button className="ql-video" />
+      {/* <button className="ql-video" /> */}
       <button className="ql-htmlembed">
         <CustomHtml />
       </button>
@@ -218,7 +218,7 @@ export const QuillToolbar = () => (
     </span>
     <span className="ql-formats">
       <button className="ql-formula" />
-      <button className="ql-code-block" />
+      {/* <button className="ql-code-block" /> */}
       <button className="ql-clean" />
     </span>
     <span className="ql-formats">

@@ -8,6 +8,8 @@ const BlogState = (props) => {
     const context = useContext(noteContext);
     const { host, setProgress, setAlertScreen } = context;
     const [createState, setCreateState] = useState(null)
+    const [ckState, setCkState] = useState("")
+
     let blogsIntial = [
         {
             "_id": "000000000000",
@@ -31,55 +33,34 @@ const BlogState = (props) => {
         setAlertScreen("Paste Is Not Allowed In This Editor", "warning");
         return false;
     });
-    // $(".public-DraftEditor-content").on('paste', function (e) {
-    //     e.preventDefault();
-    //     var text;
-    //     var clp = (e.originalEvent || e).clipboardData;
-    //     if (clp === undefined || clp === null) {
-    //         text = window.clipboardData.getData("text") || "";
-    //         setAlertScreen("Clipboard Is Null", "warning");
-    //     } else {
-    //         text = clp.getData('text/plain') || "";
-    //         // e.clipboardData.setData('text/plain', );
-    //         // console.log(text)
-    //         if (text !== "") {
-    //             // text = text.replace(/<img[^>]*>/g,"");
-    //             // text = text.replace(/<figure[^>]*>/g,"");
-    //             navigator.clipboard.writeText(text);
-    //             setProgress(40)
-    //             setTimeout(() => {
-    //                 document.execCommand('paste');
-    //                 setProgress(100)
-    //             }, 1000);
-                
-    //         }
-    //         setProgress(100)
-    //     }
-    // });
 
-    $(window).scroll(function(e){ 
-        var $el = $('.ql-toolbar'); 
+    $(window).scroll(function (e) {
+        var $el = $('.ql-toolbar');
         var isPositionFixed = ($el.css('position') === 'fixed');
-        if ($(this).scrollTop() > 300 && !isPositionFixed){ 
-          $el.css({'position': 'fixed', 'top': '0px'}); 
+        if ($(this).scrollTop() > 300 && !isPositionFixed) {
+            $el.css({ 'position': 'fixed', 'top': '0px' });
         }
-        if ($(this).scrollTop() < 300 && isPositionFixed){
-          $el.css({'position': 'static', 'top': '0px'}); 
-        } 
-      });
+        if ($(this).scrollTop() < 300 && isPositionFixed) {
+            $el.css({ 'position': 'static', 'top': '0px' });
+        }
+    });
 
 
-    const getBlogs = async (id , refer) => {
+    const getBlogs = async (id, refer) => {
         setBlogPost(blogsIntial[0])
         await callAPI("GET", `${host}/api/blogs/fetchallblogs/${id}`)
             .then(async data => {
                 if (data && data.length > 0 && !data.error) {
                     if (id) {
                         setBlogPost(data[0])
-                        if(refer === "update"){
+                        if (refer === "update") {
                             $("#edittitle").val(data[0].title);
                             $("#editsubtitle").val(data[0].subtitle)
                             $(".ql-editor").html(data[0].body);
+                            setProgress(100)
+
+                            setCreateState({...createState , date : data[0].date , body : data[0].body});
+                            setCkState(data[0].body);
                         }
                     } else {
                         await setBlogs(data);
@@ -164,7 +145,7 @@ const BlogState = (props) => {
                     body: JSON.stringify(data)
                 });
                 setProgress(80)
-                if(!response.ok){
+                if (!response.ok) {
                     console.log(response)
                     setProgress(100)
                     setAlertScreen("REQUEST FAILED. " + response.statusText + ". Check console for more", "danger");
@@ -191,7 +172,7 @@ const BlogState = (props) => {
     }
 
     return (
-        <BlogContext.Provider value={{ blogs, getBlogs, blogPost, setBlogPost, createState, setCreateState, addBlog , setAlertScreen , updateBlog}}>
+        <BlogContext.Provider value={{ blogs, getBlogs, blogPost, setBlogPost, createState, setCreateState, addBlog, setAlertScreen, updateBlog , ckState , setCkState }}>
             {props.children}
         </BlogContext.Provider>
     )

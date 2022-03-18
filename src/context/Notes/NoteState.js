@@ -17,7 +17,7 @@ const NoteState = (props) => {
       })
       .catch(async (error) => {
         // console.log('Error:', error , serverurl);
-        console.clear();
+        // console.clear();
         return null;
       });
   }

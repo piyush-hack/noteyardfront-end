@@ -791,6 +791,11 @@ pre {
   display: flex !important;
   justify-content: center;
 }
+
+
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline{
+  max-height: 70vh;
+}
 @media only screen and (max-width: 1023px) {
   .mainbox {
     display: none;
