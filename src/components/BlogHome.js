@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import blogContext from '../context/Blogs/blogContext'
 import BlogInfo from './BlogInfo'
+import Footer from './Footer'
 import MainBox from './MainBox'
 const BlogHome = () => {
 
@@ -45,9 +46,9 @@ const BlogHome = () => {
 
                 </div>
             </div>
-            <div className="sectionB">
-            </div>
-            <br /><br /><br />
+            <br /><br />
+            <Footer/>
+            
         </div >
     )
 }
