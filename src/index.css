@@ -24,6 +24,22 @@ i {
   margin-top: 50px;
 }
 
+/* .notecard {
+  min-width: 272px;
+} */
+
+.notetxt {
+  max-height: 180px;
+  overflow: scroll;
+}
+
+.col-md-3 {
+  transition: 1s;
+}
+
+.expand {
+  margin-top: 8px;
+}
 .alert {
   position: absolute !important;
   z-index: 1;
@@ -764,7 +780,7 @@ pre {
   z-index: 1;
 }
 .ql-editor {
-  min-height: 40vh;
+  height: 40vh  !important;
 }
 
 #edittitle {
@@ -796,7 +812,7 @@ pre {
   max-height: 70vh;
 }
 
-.filler{
+.filler {
   width: 300px;
 }
 
@@ -846,11 +862,11 @@ pre {
   top: calc(50% - 45px);
 }
 
-.fr-symbol i{
+.fr-symbol i {
   transform: scale(1.2);
 }
 
-.fr-scroll{
+.fr-scroll {
   position: relative;
   height: 100%;
   width: 100%;
@@ -858,19 +874,19 @@ pre {
   overflow: hidden;
 }
 
-.fr-scroll div{
+.fr-scroll div {
   background-color: #626ee3;
   position: absolute;
   border-radius: 10px;
   padding: 10px;
-  color: rgba(255,255,255,.8);
+  color: rgba(255, 255, 255, 0.8);
   z-index: 0;
-  box-shadow: 0 2px 4px rgba(50,50,93,.1);
+  box-shadow: 0 2px 4px rgba(50, 50, 93, 0.1);
   transform: translateX(700px);
   animation: scrollH 30s infinite;
 }
 
-.frs-container{
+.frs-container {
   background: linear-gradient(to right, rgba(0, 21, 40, 0.8), transparent 20%);
   position: absolute;
   top: 0;
@@ -881,7 +897,7 @@ pre {
 }
 
 @keyframes scrollH {
-  100%{
+  100% {
     transform: translateX(-200px);
   }
 }
@@ -905,5 +921,15 @@ pre {
 
   .sectionA {
     margin-top: 50px;
+  }
+  .footer{
+    display: inherit;
+  }
+}
+
+@media (max-width: 988px) and (min-width: 700px) {
+  .col-md-3 {
+    flex: 0 0 auto;
+    width: 100vw;
   }
 }
