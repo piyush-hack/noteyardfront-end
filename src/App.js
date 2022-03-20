@@ -18,7 +18,6 @@ import BlogItem from './components/BlogItem';
 import BlogState from './context/Blogs/BlogState';
 import CreateBlog from './components/CreateBlog';
 import AddNote from './components/AddNote';
-import MyCkeditor from './components/MyCkeditor';
 
 function App() {
 
@@ -44,7 +43,6 @@ function App() {
                 <Route exact path="/create" component={CreateBlog} />
                 <Route exact path="/update/:id" component={CreateBlog} />
                 <Route exact path="/addNote" component={AddNote} />
-                <Route exact path="/ck" component={MyCkeditor} />
 
               </div>
 

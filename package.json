@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "ckeditor5-custom-build": "file:ckeditor5",
     "concurrently": "^7.0.0",
+    "dat.gui": "^0.7.9",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "html-react-parser": "^1.4.8",

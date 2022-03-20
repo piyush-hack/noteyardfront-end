@@ -288,11 +288,15 @@ td .edit:hover {
   transition: 1s;
 }
 
+.bloghome{
+  position: relative;
+}
+
 .background {
-  background-color: #02203c;
+  position: relative;
+  background-color: transparent;
   height: 65vh;
   width: 100vw;
-  z-index: -1;
   color: #fff;
   padding-top: 19vh;
   padding-left: 130px;
@@ -307,6 +311,7 @@ td .edit:hover {
   max-width: 30vw;
   transition: 1s;
 }
+
 
 .background p {
   margin: 20px 0px 40px 0px;
@@ -780,7 +785,7 @@ pre {
   z-index: 1;
 }
 .ql-editor {
-  height: 40vh  !important;
+  height: 40vh !important;
 }
 
 #edittitle {
@@ -922,7 +927,7 @@ pre {
   .sectionA {
     margin-top: 50px;
   }
-  .footer{
+  .footer {
     display: inherit;
   }
 }
@@ -931,5 +936,44 @@ pre {
   .col-md-3 {
     flex: 0 0 auto;
     width: 100vw;
+  }
+}
+
+/* ....................................filler......................................... */
+
+.anbg {
+  margin: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 65vh;
+  cursor: none;
+  background: black;
+  background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
+  overflow: hidden;
+  position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+.filter {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fe5757;
+  animation: colorChange 30s ease-in-out infinite;
+  animation-fill-mode: both;
+  mix-blend-mode: overlay;
+}
+
+@keyframes colorChange {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.9;
   }
 }
