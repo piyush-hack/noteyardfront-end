@@ -118,12 +118,14 @@ const AnimatedBg = () => {
             };
 
         // var gui;
-        // gui = new dat.GUI();
+        // gui = new dat.GUI({ autoPlace: false });
         // gui.add(params, 'maxDistFromCursor').min(0).max(100).step(10).name('Size');
         // gui.add(params, 'dotsSpeed').min(0).max(100).step(.5).name('Speed');
         // gui.add(params, 'backgroundSpeed').min(0).max(150).step(1).name('Sky speed');
-        // gui.open();
+        // gui.close();
+        // // Create GUI   
 
+        // var customContainer = document.querySelector(".anbg").appendChild(gui.domElement);
         setCanvasSize();
         init();
 
@@ -161,10 +163,16 @@ const AnimatedBg = () => {
             requestAnimationFrame(animate);
         }
 
+        let winScroll = 0
+
+        window.onscroll = function (e) {
+            winScroll = window.scrollY; // Value of scroll Y in px
+        };
+
         window.onmousemove = function (e) {
             mouseMoving = true;
             mouseX = e.clientX;
-            mouseY = e.clientY;
+            mouseY = e.clientY - 100 + winScroll;
             clearInterval(mouseMoveChecker);
             mouseMoveChecker = setTimeout(function () {
                 mouseMoving = false;
@@ -203,11 +211,31 @@ const AnimatedBg = () => {
         function degToRad(deg) {
             return deg * (Math.PI / 180);
         }
+
+        // const cursorRounded = document.querySelector('.rounded');
+        const cursorPointed = document.querySelector('.pointed');
+
+
+
+
+        const moveCursor = (e) => {
+            const mouseY = e.clientY;
+            const mouseX = e.clientX;
+
+            // cursorRounded.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+
+            cursorPointed.style.transform = `translate(${mouseX}px, ${mouseY - 100 + winScroll}px)`;
+
+        }
+
+        window.addEventListener('mousemove', moveCursor)
     }, [])
 
     return (
         <>
             <div className="anbg">
+                {/* <div className="cursor rounded" /> */}
+                <div className="cursor pointed" />
                 <div className="bgfilter" />
                 <canvas id="canvas" />
             </div>

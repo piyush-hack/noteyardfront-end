@@ -288,7 +288,7 @@ td .edit:hover {
   transition: 1s;
 }
 
-.bloghome{
+.bloghome {
   position: relative;
 }
 
@@ -303,6 +303,7 @@ td .edit:hover {
   transition: 1s;
   opacity: 0;
   animation: opinc 1s linear forwards;
+  cursor: none;
 }
 
 .background div {
@@ -311,7 +312,6 @@ td .edit:hover {
   max-width: 30vw;
   transition: 1s;
 }
-
 
 .background p {
   margin: 20px 0px 40px 0px;
@@ -349,7 +349,7 @@ td .edit:hover {
   perspective: 700px;
   height: 500px;
   position: absolute;
-  top: 180px;
+  top: 110px;
   right: 120px;
 }
 
@@ -951,9 +951,26 @@ pre {
   background: linear-gradient(to bottom, #000000 0%, #5788fe 100%);
   overflow: hidden;
   position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -2;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+.rounded {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+.pointed {
+  width: 7px;
+  height: 7px;
+  background-color: white;
+  border-radius: 50%;
+  margin-bottom: 20rem;
+  position: absolute;
+  opacity: 0.7;
+  box-shadow: 0px 0px 2px 2px white;
 }
 
 .filter {
@@ -966,6 +983,10 @@ pre {
   animation: colorChange 30s ease-in-out infinite;
   animation-fill-mode: both;
   mix-blend-mode: overlay;
+}
+
+.dg.main{
+  z-index: 0;
 }
 
 @keyframes colorChange {

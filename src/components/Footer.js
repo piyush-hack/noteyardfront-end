@@ -22,7 +22,7 @@ const Footer = () => {
                     <div className='fr-start' >
                         <div className='fr-main' >
                             <div className="fr-symbol">
-                            <i class="fa-solid fa-feather-pointed"></i>
+                            <i className="fa-solid fa-feather-pointed"></i>
                             </div>
 
                             <div className="fr-scroll">

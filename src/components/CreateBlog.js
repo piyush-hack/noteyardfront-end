@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import blogContext from '../context/Blogs/blogContext';
 import { useHistory } from "react-router-dom";
 import ReactQuill from "react-quill";
@@ -8,14 +8,10 @@ import { CKEditor } from '@ckeditor/ckeditor5-react'
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-const editorConfiguration = {
-  toolbar: ['bold', 'italic']
-};
-
 
 const CreateBlog = () => {
   const context = useContext(blogContext);
-  const { createState, setCreateState, addBlog, setAlertScreen, getBlogs, updateBlog, ckState, setCkState } = context;
+  const { createState, setCreateState, addBlog, setAlertScreen, getBlogs, updateBlog, ckState } = context;
   let history = useHistory();
   let location = useLocation();
   const { id } = useParams();
@@ -75,7 +71,7 @@ const CreateBlog = () => {
   }
 
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!localStorage.getItem("token")) {
       history.push("/login")
     } else {
