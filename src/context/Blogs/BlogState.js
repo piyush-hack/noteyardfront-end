@@ -24,8 +24,31 @@ const BlogState = (props) => {
         },
     ];
 
+    const [allArticles, setAllArticles] = useState({
+        articles: blogsIntial,
+        loading: false,
+        page: 1,
+        totalResults: 0,
+        pageSize: 6,
+    })
 
-    const [blogs, setBlogs] = useState(blogsIntial)
+
+    // const [blogs, setBlogs] = useState(blogsIntial)
+
+    function blogs() {
+        return allArticles.articles
+    }
+
+    async function setBlogs(newArticles, concat = false) {
+
+        console.log(newArticles, "fdsf")
+        await setAllArticles({
+            ...allArticles,
+            articles: concat === false ? newArticles : allArticles.articles.concat(newArticles),
+        })
+        await console.log(allArticles.articles)
+    }
+
     const [blogPost, setBlogPost] = useState(blogsIntial[0])
 
     $(".public-DraftEditor-content").on('paste', function (e) {
@@ -45,30 +68,62 @@ const BlogState = (props) => {
         }
     });
 
+    const getBlogsByPage = async (page, concat) => {
+        setBlogPost(blogsIntial[0])
+        await callAPI("GET", `${host}/api/blogs/fetchallblogs/undefined?page=${page}&limit=${allArticles.pageSize}`)
+            .then(async data => {
+                if (data && data.articles && data.articles.length > 0 && !data.error) {
+                    console.log(page)
+
+                    // await setBlogs(data, true);
+                    await setAllArticles({
+                        ...allArticles,
+                        articles: concat === false ? data.articles : allArticles.articles.concat(data.articles),
+                        totalResults: data.totalResults,
+                        totalPages: Math.ceil(allArticles.totalResults / allArticles.pageSize),
+                        loading: false,
+                        page: allArticles.page + 1
+                    })
+                    await setAlertScreen("DATA RETRIVED", "success")
+                    // console.log(data)
+                } else {
+                    // setBlogs(null)
+                    // console.log(data , data.length)
+
+                }
+                setProgress(100)
+                // console.log(data); // JSON data parsed by `data.json()` call
+
+            });
+    }
+
 
     const getBlogs = async (id, refer) => {
         setBlogPost(blogsIntial[0])
         await callAPI("GET", `${host}/api/blogs/fetchallblogs/${id}`)
             .then(async data => {
-                if (data && data.length > 0 && !data.error) {
+                if (data && data.articles && data.articles.length > 0 && !data.error) {
                     if (id) {
-                        setBlogPost(data[0])
+                        setBlogPost(data.articles[0])
                         if (refer === "update") {
-                            $("#edittitle").val(data[0].title);
-                            $("#editsubtitle").val(data[0].subtitle)
-                            $(".ql-editor").html(data[0].body);
+                            $("#edittitle").val(data.articles[0].title);
+                            $("#editsubtitle").val(data.articles[0].subtitle)
+                            $(".ql-editor").html(data.articles[0].body);
                             setProgress(100)
 
-                            setCreateState({...createState , date : data[0].date , body : data[0].body});
-                            setCkState(data[0].body);
+                            setCreateState({
+                                ...createState, date: data.articles[0].date, body: data.articles[0].body,
+                                title: data.articles[0].title
+                            });
+                            setCkState(data.articles[0].body);
                         }
                     } else {
-                        await setBlogs(data);
+                        await setBlogs(data.articles);
                     }
                     await setAlertScreen("DATA RETRIVED", "success")
                     // console.log(data)
                 } else {
-                    // setBlogs(null)
+                    console.log("Error", data)
                 }
                 setProgress(100)
                 // console.log(data); // JSON data parsed by `data.json()` call
@@ -80,7 +135,8 @@ const BlogState = (props) => {
     const addBlog = async () => {
         //console.log("adding a note", note)
 
-        if (!createState || createState.body.length < 100) {
+        if (!createState || createState.body.length < 100 || (!createState.title || createState.title.length <= 0)
+            || !createState.subtitle || createState.subtitle.length <= 0) {
             setAlertScreen("Fill All The Fields. And Content Should Be More Than 100 Words ", "danger");
             return;
         }
@@ -106,7 +162,7 @@ const BlogState = (props) => {
     const updateBlog = async (id) => {
         //console.log("adding a note", note)
 
-        if (!createState || createState.body.length < 100) {
+        if (!createState || createState.body.length < 100 || !createState.title || createState.title.length <= 0) {
             setAlertScreen("Fill All The Fields. And Content Should Be More Than 100 Words ", "danger");
             return;
         }
@@ -172,7 +228,7 @@ const BlogState = (props) => {
     }
 
     return (
-        <BlogContext.Provider value={{ blogs, getBlogs, blogPost, setBlogPost, createState, setCreateState, addBlog, setAlertScreen, updateBlog , ckState , setCkState }}>
+        <BlogContext.Provider value={{ blogs, getBlogs, blogPost, setBlogPost, createState, setCreateState, addBlog, setAlertScreen, updateBlog, ckState, setCkState, allArticles, setAllArticles, getBlogsByPage }}>
             {props.children}
         </BlogContext.Provider>
     )
