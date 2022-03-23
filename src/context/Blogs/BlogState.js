@@ -82,7 +82,7 @@ const BlogState = (props) => {
                         totalResults: data.totalResults,
                         totalPages: Math.ceil(allArticles.totalResults / allArticles.pageSize),
                         loading: false,
-                        page: allArticles.page + 1
+                        page: concat === false? 2 : allArticles.page + 1
                     })
                     await setAlertScreen("DATA RETRIVED", "success")
                     // console.log(data)
