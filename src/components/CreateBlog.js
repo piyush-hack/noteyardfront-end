@@ -3,16 +3,16 @@ import blogContext from '../context/Blogs/blogContext';
 import { useHistory } from "react-router-dom";
 import ReactQuill from "react-quill";
 import EditorToolbar, { modules } from "./QuillToolbar";
-import { Editor as ClassicEditor } from 'ckeditor5-custom-build/build/ckeditor';
-import { CKEditor } from '@ckeditor/ckeditor5-react'
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import parse from 'html-react-parser';
+import CkTxtEditor from "./CkTxtEditor";
 
 
 const CreateBlog = () => {
+
   const context = useContext(blogContext);
-  const { createState, setCreateState, addBlog, setAlertScreen, getBlogs, updateBlog, ckState } = context;
+  const { createState, setCreateState, addBlog, setAlertScreen, getBlogs, updateBlog} = context;
   let history = useHistory();
   let location = useLocation();
   const { id } = useParams();
@@ -55,7 +55,6 @@ const CreateBlog = () => {
     }
   }
 
-
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       history.push("/login")
@@ -78,33 +77,13 @@ const CreateBlog = () => {
         <input type="text" id="editsubtitle" className="form-control" onChange={handleChange} name="subtitle" placeholder="SubTitle Here" />
         <br />
         <button type="button" id="toogleEditor" className="btn btn-outline-dark" onClick={handleToogleClick}>Simple → Advanced</button>
+
         <div ref={editor1} style={{ display: "none", position: "relative" }} >
-          <CKEditor
-            editor={ClassicEditor}
-            data={ckState}
-            onReady={editor => {
-              // You can store the "editor" and use when it is needed.
-              console.log('Editor is ready to use!', editor);
-            }}
-            onChange={(event, editor) => {
-              const data = editor.getData();
-              console.log({ event, editor, data });
-              setCreateState({
-                ...createState, body: data, lastChange: "ck-editor"
-              })
-            }}
-            onBlur={(event, editor) => {
-              console.log('Blur.', editor);
-            }}
-            onFocus={(event, editor) => {
-              console.log('Focus.', editor);
-            }}
-          />
+          <CkTxtEditor/>
         </div>
+
         <div ref={editor2} style={{ display: "block", position: "relative" }} value="" >
-
           <EditorToolbar />
-
           <ReactQuill
             ref={quilledit}
             theme="snow"
@@ -114,8 +93,10 @@ const CreateBlog = () => {
           >
           </ReactQuill>
         </div>
+
         <br />
-        <div>
+
+        <div className="preview">
           <button type="button" className="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
             Save Changes
           </button>
@@ -155,6 +136,7 @@ const CreateBlog = () => {
           </div>
         </div>
 
+        
         {/* <button className="btn btn-primary" onClick={handleCreateBtn}>Save</button> */}
         <br /><br /><br />
 

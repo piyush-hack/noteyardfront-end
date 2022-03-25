@@ -759,13 +759,14 @@ td .edit:hover {
   transform: scale(1.1);
 }
 
-.blogitem hr { 
+.blogitem hr {
   color: transparent;
   border-width: 0px 4px 42px 174px;
   border-style: solid;
-  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5" fill="black" class="bi bi-three-dots" viewBox="0 0 16 16"><path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>') 0 0 100%;
-   width: 216px;
-   margin-left: 20vw;
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5" fill="black" class="bi bi-three-dots" viewBox="0 0 16 16"><path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>')
+    0 0 100%;
+  width: 216px;
+  margin-left: 20vw;
 }
 
 .blogitem .date {
@@ -994,8 +995,20 @@ pre {
   mix-blend-mode: overlay;
 }
 
-.dg.main{
+.dg.main {
   z-index: 0;
+}
+
+.imagehoster {
+  max-width: 90vw;
+}
+
+.editorBtn {
+  padding: 0px 6px;
+  border-radius: 5px;
+}
+.editorBtn:focus {
+  background: darkgrey;
 }
 
 @keyframes colorChange {
