@@ -73,7 +73,7 @@ const BlogState = (props) => {
         await callAPI("GET", `${host}/api/blogs/fetchallblogs/undefined?page=${page}&limit=${allArticles.pageSize}`)
             .then(async data => {
                 if (data && data.articles && data.articles.length > 0 && !data.error) {
-                    console.log(page)
+                    // console.log(page)
 
                     // await setBlogs(data, true);
                     await setAllArticles({
@@ -89,7 +89,6 @@ const BlogState = (props) => {
                 } else {
                     // setBlogs(null)
                     // console.log(data , data.length)
-
                 }
                 setProgress(100)
                 // console.log(data); // JSON data parsed by `data.json()` call

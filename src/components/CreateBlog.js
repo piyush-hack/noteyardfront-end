@@ -33,20 +33,6 @@ const CreateBlog = () => {
   }
 
   const handleEditorChange = (e) => {
-
-    // var dateOne = new Date(createState.date); //Year, Month, Date    
-    // var dateTwo = new Date('January 18, 2022'); //Year, Month, Date   
-    // if (dateCheck === false) {
-    //   if (dateOne > dateTwo) {
-    //     dateCheck = true;
-    //     setAlertScreen("Filled Both Editors", "success")
-
-    //   } else {
-    //     setAlertScreen("Advanced Editor's Update Available From 18 Mar 2022", "warning")
-    //   }
-    // }
-
-
     setCreateState({
       ...createState, body: e, lastChange: "ReactQuill-Editor"
     })
@@ -79,10 +65,9 @@ const CreateBlog = () => {
           await getBlogs(id, "update")
         }
         getData()
-      } else {
-
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
   return (
     <div>

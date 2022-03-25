@@ -22,11 +22,7 @@ const NoteState = (props) => {
       });
   }
 
-  // 2nd host -> https://noteyard-backend.herokuapp.com
-  // console.log(url("https://noteyard-backend.herokuapp.com"))
   const host = url("https://noteyard-backend.herokuapp.com") != null ? "https://noteyard-backend.herokuapp.com" : "https://noteyardbackend.herokuapp.com";
-
-  // console.log(host)
   
   const notesIntial = [
     {

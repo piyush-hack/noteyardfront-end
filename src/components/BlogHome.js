@@ -11,7 +11,7 @@ import Spinner from './Spinner'
 const BlogHome = () => {
 
     const context = useContext(blogContext);
-    const { allArticles, setAllArticles, getBlogsByPage } = context;
+    const { allArticles, getBlogsByPage } = context;
 
 
     const fetchMoreData = async () => {
@@ -23,14 +23,14 @@ const BlogHome = () => {
     };
 
     useEffect(() => {
-
-
-
         async function start() {
-            await getBlogsByPage(1, false);
+            if (allArticles.page <= 1) {
+                await getBlogsByPage(1, false);
+            }
         }
-
         start();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

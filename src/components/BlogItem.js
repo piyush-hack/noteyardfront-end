@@ -36,7 +36,8 @@ const BlogItem = () => {
         }
 
         start();
-        // eslint-disable-line
+
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
