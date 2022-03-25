@@ -224,7 +224,7 @@ const AnimatedBg = () => {
 
             // cursorRounded.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
-            cursorPointed.style.transform = `translate(${mouseX}px, ${mouseY - 100 + winScroll}px)`;
+            cursorPointed.style.transform = `translate(${mouseX}px, ${mouseY - 100}px)`;
 
         }
 

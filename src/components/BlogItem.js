@@ -9,8 +9,8 @@ const BlogItem = () => {
     const { blogPost, getBlogs } = context;
     var loc = window.location.href.split("/");
 
-    document.title = blogPost.title;
-    document.getElementsByTagName("META")[2].content = blogPost.subtitle;
+    // document.title = blogPost.title;
+    // document.getElementsByTagName("META")[2].content = blogPost.subtitle;
 
     const { id } = useParams();
 
