@@ -86,7 +86,7 @@ const AddNote = (props) => {
                                                 id="tag"
                                                 onChange={handleOnchange}
                                                 name="tag"
-                                                maxLength="10"
+                                                maxLength="15"
                                                 list="rec_tags"
                                                 autoComplete="off"
                                                 onInput={(e) => {
@@ -99,6 +99,7 @@ const AddNote = (props) => {
                                                 <option>TODO</option>
                                                 <option>REMINDER</option>
                                                 <option>IMPORTANT</option>
+                                                <option>BLOG NOTE</option>
                                             </datalist>
 
                                         </div>

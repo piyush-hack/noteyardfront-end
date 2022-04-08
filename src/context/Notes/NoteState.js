@@ -23,7 +23,7 @@ const NoteState = (props) => {
   }
 
   const host = url("https://noteyard-backend.herokuapp.com") != null ? "https://noteyard-backend.herokuapp.com" : "https://noteyardbackend.herokuapp.com";
-  
+
   const notesIntial = [
     {
       "_id": "loader621a4251d12050488372a61f",
@@ -125,10 +125,42 @@ const NoteState = (props) => {
 
   }
 
+  const addDesc = async (noteDesc) => {
+    //console.log("adding a note", note)
+
+    if (!localStorage.getItem('token')) {
+      setAlertScreen("REQUEST FAILED. Login To Create Notes Of Blogs", "danger");
+      return;
+    }
+
+    if (localStorage.getItem("blognoteid") != null) {
+      await callAPI("PUT", `${host}/api/notes/addNoteDesc/${localStorage.getItem("blognoteid")}`, noteDesc)
+        .then(data => {
+          if (!data.errors) {
+
+            setNotes(notes.concat(data))
+            setAlertScreen("Addedd Successfully", "success")
+
+          } else {
+            console.log(data);
+            setAlertScreen("REQUEST FAILED. Check console for more", "danger")
+          }
+          setProgress(100)
+
+        });
+    } else {
+      setAlertScreen("REQUEST FAILED. No Note Selected To Add Into", "warning")
+
+    }
+
+  }
 
   // Del note
   const delNote = async (id) => {
     //console.log("del a note", id);
+    if (localStorage.getItem("blognoteid") === id) {
+      localStorage.removeItem("blognoteid");
+    }
     await callAPI("DELETE", `${host}/api/notes/deletenote/${id}`, {})
       .then(async data => {
         if (!data.errors) {
@@ -224,7 +256,7 @@ const NoteState = (props) => {
 
 
   return (
-    <NoteContext.Provider value={{ notes, addNote, delNote, editNote, alert, setAlertScreen, getNotes, host, setProgress, progress }}>
+    <NoteContext.Provider value={{ notes, addNote, delNote, editNote, alert, setAlertScreen, getNotes, host, setProgress, progress, addDesc }}>
       {props.children}
     </NoteContext.Provider>
   )

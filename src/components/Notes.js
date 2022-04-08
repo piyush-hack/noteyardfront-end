@@ -25,8 +25,11 @@ const Notes = () => {
 
     const ref = useRef(null)
     const updateNote = async (currNote) => {
-        ref.current.click();
+        console.log(currNote)
         await setNote(currNote);
+
+        ref.current.click();
+
     }
 
     const handleClick = (e) => {
@@ -39,14 +42,20 @@ const Notes = () => {
     };
 
     const handleOnchange = (e) => {
+        console.log(e.target.value);
+
         setNote({ ...note, [e.target.name]: e.target.value })
     }
 
     const handleEditorChange = (e) => {
-        if(note.description === ''){
-            return
+        if (document.activeElement === document.querySelectorAll(".ql-editor")[1]) {
+            if (note.description === '') {
+                return
+            }
+
+            console.log(e)
+            setNote({ ...note, "description": e });
         }
-        setNote({...note , "description": e })
     }
 
     useEffect(() => {
@@ -61,8 +70,8 @@ const Notes = () => {
         }
 
         start();
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -94,9 +103,10 @@ const Notes = () => {
                                             id="etitle"
                                             aria-describedby="emailHelp"
                                             name="title"
-                                            onChange={handleOnchange}
                                             minLength="5"
                                             value={note.title}
+                                            onChange={handleOnchange}
+
                                         />
                                     </div>
                                     <div className="mb-3">
@@ -113,8 +123,9 @@ const Notes = () => {
                                             value={note.description}
                                         /> */}
                                     </div>
-                                    <ReactQuill 
-                                        onChange={handleEditorChange} value={note.description} />
+                                    <ReactQuill id="reactQuillEd"
+                                        onChange={handleEditorChange}
+                                        value={note.description} />
                                     <div className="mb-3">
                                         <label htmlFor="tag" className="form-label">
                                             Tag
@@ -139,6 +150,7 @@ const Notes = () => {
                                             <option>TODO</option>
                                             <option>REMINDER</option>
                                             <option>IMPORTANT</option>
+                                            <option>BLOG NOTE</option>
                                         </datalist>
                                     </div>
                                 </form>

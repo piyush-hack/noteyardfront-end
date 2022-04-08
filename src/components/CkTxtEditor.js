@@ -8,17 +8,17 @@ const CkTxtEditor = () => {
     const context = useContext(blogContext);
     const { createState, setCreateState, ckState } = context;
 
-    function doEditor(editor) {
-        console.log(editor)
-        const editorBtn = document.createElement('button');
-        editorBtn.innerHTML = '📁'
-        // editorBtn.setAttribute('class' , 'btn btn-primary');
-        editorBtn.setAttribute("data-mdb-toggle", "modal")
-        editorBtn.setAttribute("data-mdb-target", "#exampleModal2")
-        editorBtn.setAttribute('aria-pressed', 'false');
-        const editor_toolbar = document.querySelector('.ck-toolbar');
-        editor_toolbar.appendChild(editorBtn);
-    }
+    // function doEditor(editor) {
+    //     console.log(editor)
+    //     const editorBtn = document.createElement('button');
+    //     editorBtn.innerHTML = '📁'
+    //     // editorBtn.setAttribute('class' , 'btn btn-primary');
+    //     editorBtn.setAttribute("data-mdb-toggle", "modal")
+    //     editorBtn.setAttribute("data-mdb-target", "#exampleModal2")
+    //     editorBtn.setAttribute('aria-pressed', 'false');
+    //     const editor_toolbar = document.querySelector('.ck-toolbar');
+    //     editor_toolbar.appendChild(editorBtn);
+    // }
 
     return (
         <div>
@@ -28,7 +28,7 @@ const CkTxtEditor = () => {
                 onReady={editor => {
                     // You can store the "editor" and use when it is needed.
                     // console.log('Editor is ready to use!', editor);
-                    doEditor(editor);
+                    // doEditor(editor);
                 }}
                 onChange={(event, editor) => {
                     const data = editor.getData();
