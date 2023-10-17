@@ -22,7 +22,7 @@ const NoteState = (props) => {
       });
   }
 
-  const host = url("https://noteyard-backend.herokuapp.com") != null ? "https://noteyard-backend.herokuapp.com" : "https://noteyardbackend.herokuapp.com";
+  const host = "https://kjvtkkyzwjj7rmag6ymaxravfu0ieiuj.lambda-url.ap-south-1.on.aws";
 
   const notesIntial = [
     {
@@ -95,13 +95,6 @@ const NoteState = (props) => {
 
       });
   }
-
-
-  // callAPI("GET", `${host}/api/notes/fetchallnotes`)
-  //   .then(async data => {
-  //     //console.log(data); // JSON data parsed by `data.json()` call
-  //     setNotes(data)
-  //   });
 
 
   //Add a note
